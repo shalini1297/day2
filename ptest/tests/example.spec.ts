@@ -87,7 +87,7 @@ import { skip } from 'node:test';
 
     test('Title updated should work',async ({request}, testinfo)=>{
       const body = testinfo['body']
-      const title = 'create title'
+      const title = 'updated title'
       const resp = await request.patch (`/todo-api-v12/v1/todo/${body.id}`,{
         data:{
           title
@@ -99,7 +99,7 @@ import { skip } from 'node:test';
       })
       expect (resp.status()).toBe(200)
     })
-    //tear down
+    //
    
   
   })
