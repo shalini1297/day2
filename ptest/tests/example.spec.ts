@@ -69,6 +69,36 @@ import { skip } from 'node:test';
       })
       expect (resp.status()).toBe(200)
     })
+
+    test('status updated should work',async ({request}, testinfo)=>{
+      const body = testinfo['body']
+      const title = 'Changed title'
+      const resp = await request.patch (`/todo-api-v12/v1/todo/${body.id}`,{
+        data:{
+          Status :'Done'
+        },
+        headers:{
+          'content-type':'application/Json'
+        }
+
+      })
+      expect (resp.status()).toBe(200)
+    })
+
+    test('Title updated should work',async ({request}, testinfo)=>{
+      const body = testinfo['body']
+      const title = 'create title'
+      const resp = await request.patch (`/todo-api-v12/v1/todo/${body.id}`,{
+        data:{
+          title
+        },
+        headers:{
+          'content-type':'application/Json'
+        }
+
+      })
+      expect (resp.status()).toBe(200)
+    })
     //tear down
    
   
