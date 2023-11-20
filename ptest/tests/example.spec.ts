@@ -44,7 +44,7 @@ import { skip } from 'node:test';
   test.describe (' update Todo',()=>{
     test.beforeEach(async({request},testinfo)=>{
       
-      const title = 'ended the playwright'
+      const title = 'shalini started playwright'
       const todoresp = await request.post('/todo-api-v12/v1/todo',{
         data:{title},
          headers:{
@@ -58,9 +58,9 @@ import { skip } from 'node:test';
     test('Additional',async ({request}, testinfo)=>{
       const body = testinfo['body']
       const title = 'Changed title'
-      const resp = await request.patch (`/todo-api-v12/v1/todo/${body.id}`,{
+      const resp = await request.get (`/todo-api-v12/v1/todo/${body.id}`,{
         data:{
-          title
+          body : 65
         },
         headers:{
           'content-type':'application/Json'
@@ -88,13 +88,22 @@ import { skip } from 'node:test';
     test('Title updated should work',async ({request}, testinfo)=>{
       const body = testinfo['body']
       const title = 'updated title'
-      const resp = await request.patch (`/todo-api-v12/v1/todo/${body.id}`,{
+      const resp = await request. put(`/todo-api-v12/v1/todo/${body.id}`,{
         data:{
-          title
+          body : 201
         },
         headers:{
           'content-type':'application/Json'
         }
+
+      })
+      expect (resp.status()).toBe(200)
+    })
+
+    test('get all the data',async ({request}, testinfo)=>{
+      const body = testinfo['body']
+      const title = 'Changed title'
+      const resp = await request.get (`/todo-api-v12/v1/todo/${body.id}`,{
 
       })
       expect (resp.status()).toBe(200)
